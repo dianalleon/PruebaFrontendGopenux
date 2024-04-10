@@ -10,6 +10,7 @@ import {AuthService} from "../../services/auth.service";
 export class LoginComponent implements OnInit {
 
   form!: FormGroup;
+  hide: boolean = true;
   constructor(private formBuilder: FormBuilder, private auth: AuthService) { }
 
   ngOnInit(): void {
@@ -25,5 +26,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     this.auth.login(this.form.value)
+  }
+
+  toggleVisibility(): void {
+    this.hide = !this.hide;
   }
 }
