@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>Registro</h2>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="name" placeholder="Ingrese su nombre">
+    <mat-error *ngIf="form.get('name')?.hasError('required')">Su nombre es requerido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Apellido</mat-label>
+    <input matInput formControlName="lastName" placeholder="Ingrese su apellido">
+    <mat-error *ngIf="form.get('lastName')?.hasError('required')">Su apellido es requerido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" placeholder="Ingrese su correo">
+    <mat-error *ngIf="form.get('email')?.hasError('required')">El correo electrónico es requerido</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="col" >
+    <mat-label>Contraseña</mat-label>
+    <input matInput formControlName="password" placeholder="Ingrese su contraseña" type="password" >
+    <mat-error *ngIf="form.get('password')?.hasError('required')">Su contraseña es requerido</mat-error>
+  </mat-form-field>
+</form>

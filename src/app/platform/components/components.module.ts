@@ -3,15 +3,22 @@ import { CommonModule } from '@angular/common';
 import { MapComponent } from './map/map.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import {MaterialModule} from "../../material/material.module";
+import { FormRegisterComponent } from './form-register/form-register.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     MapComponent,
-    SidenavComponent
+    SidenavComponent,
+    FormRegisterComponent
+  ],
+  exports: [
+    FormRegisterComponent
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class ComponentsModule { }

@@ -1,0 +1,34 @@
+.form{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.col {
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.btn-save {
+  background-color: #37745B;
+  color: aliceblue;
+  margin: 5px;
+}
+
+.btn-close{
+  background-color: #8B9D77;
+  color: aliceblue;
+  margin: 5px;
+}
+
+
+
