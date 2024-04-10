@@ -2,3 +2,45 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+h2{
+  align-items: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color:#6a7da0;
+}
+
+.visible {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  gap:10px;
+}
+
+.btn-save {
+  border-radius: 4px;
+  background-color: #43598a;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.btn-save mat-icon {
+  padding:5px;
+  color: white;
+}
+
+.btn{
+  background-color: #c0c7c2;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: white;
+  padding:5px;
+}

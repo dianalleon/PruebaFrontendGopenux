@@ -17,14 +17,6 @@ body{
   font-family: 'Cormorant Garamond', serif;
 }
 
-h2{
-  align-items: center;
-  font-family: 'Nunito', sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  color:#6a7da0;
-}
-
   .mat-form-field {
     width: 100%;
   }
@@ -34,39 +26,39 @@ h2{
   padding: 5px 10px;
 }
 
-.visible {
-  display: inline-flex;
-  width: 100%;
-  justify-content: space-between;
-}
+//.visible {
+//  display: inline-flex;
+//  width: 100%;
+//  justify-content: space-between;
+//}
 
-.btn-save {
-  border-radius: 4px;
-  background-color: #43598a;
-  cursor: pointer;
-  border: none;
-  outline: none;
-}
-
-.btn-save mat-icon {
-  padding:5px;
-  color: white;
-}
-
-.buttons {
-  display: flex;
-  gap:10px;
-}
-
-.btn-close{
-  background-color: #c0c7c2;
-  border-radius: 4px;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  color: white;
-  padding:5px;
-}
+//.buttons {
+//  display: flex;
+//  gap:10px;
+//}
+//
+//.btn-save {
+//  border-radius: 4px;
+//  background-color: #43598a;
+//  cursor: pointer;
+//  border: none;
+//  outline: none;
+//}
+//
+//.btn-save mat-icon {
+//  padding:5px;
+//  color: white;
+//}
+//
+//.btn{
+//  background-color: #c0c7c2;
+//  border-radius: 4px;
+//  cursor: pointer;
+//  border: none;
+//  outline: none;
+//  color: white;
+//  padding:5px;
+//}
 
 
 

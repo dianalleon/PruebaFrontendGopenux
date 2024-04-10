@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-form-register',
@@ -9,24 +9,33 @@ import {AuthService} from "../../services/auth.service";
 })
 export class FormRegisterComponent implements OnInit {
 
+  @Output() formDatos: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
   form!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private auth: AuthService) { }
+  hide: boolean = true;
+  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initForm();
+  }
+
+  toggleVisibility(): void {
+    this.hide = !this.hide;
   }
 
   initForm(): void {
     this.form = this.formBuilder. group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/)]],
     })
   }
 
   onSubmit(){
-    //consumir los parametros de la ruta para el rol
-    // this.form.roles.value = "ROLE_ADMIN";
+    this.route.url.subscribe(urlSegments => {
+      const roles:string = urlSegments[urlSegments.length - 1].path;
+      this.form.addControl('roles', this.formBuilder.control(roles))
+    });
+    this.formDatos.emit(this.form.value);
   }
 }

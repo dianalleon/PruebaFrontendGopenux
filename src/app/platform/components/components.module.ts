@@ -5,6 +5,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import {MaterialModule} from "../../material/material.module";
 import { FormRegisterComponent } from './form-register/form-register.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -15,10 +16,11 @@ import {ReactiveFormsModule} from "@angular/forms";
   exports: [
     FormRegisterComponent
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        MaterialModule,
+        ReactiveFormsModule,
+        RouterModule
+    ]
 })
 export class ComponentsModule { }

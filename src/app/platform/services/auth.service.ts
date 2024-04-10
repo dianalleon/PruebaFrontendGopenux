@@ -25,6 +25,7 @@ export class AuthService {
   }
 
   registerCitizen(body: User){
+    console.log(body)
     this.http.post<User>(this.apiUrl + `/api/register-user/citizen`, body).subscribe((userRegister: User) => {
       console.log(userRegister)
       this.router.navigateByUrl('/auth/login')
@@ -32,6 +33,7 @@ export class AuthService {
   }
 
   registerTechnical(body: User): void {
+    console.log(body)
     this.http.post<User>(this.apiUrl + `/api/register-user/technical`, body).subscribe((userRegister: User): void => {
       console.log(userRegister)
       this.router.navigateByUrl('/auth/login')

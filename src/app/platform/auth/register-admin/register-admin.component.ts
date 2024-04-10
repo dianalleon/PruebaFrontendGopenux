@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-register-admin',
   templateUrl: './register-admin.component.html',
   styleUrls: ['./register-admin.component.scss']
 })
-export class RegisterAdminComponent implements OnInit {
+export class RegisterAdminComponent {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
-  ngOnInit(): void {
+  registerAdmin(user: any){
+    this.auth.registerTechnical(user);
   }
-
 }
