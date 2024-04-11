@@ -15,3 +15,8 @@ export interface Category {
   id?: string;
   name: string;
 }
+
+export interface Coordinate {
+  lat: number,
+  long:number
+}

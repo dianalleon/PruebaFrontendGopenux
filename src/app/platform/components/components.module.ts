@@ -6,18 +6,21 @@ import {MaterialModule} from "../../material/material.module";
 import { FormRegisterComponent } from './form-register/form-register.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
+import { FormNoticeComponent } from './form-notice/form-notice.component';
 
 @NgModule({
   declarations: [
     MapComponent,
     SidenavComponent,
-    FormRegisterComponent
+    FormRegisterComponent,
+    FormNoticeComponent
   ],
-    exports: [
-      FormRegisterComponent,
-      SidenavComponent,
-      MapComponent
-    ],
+  exports: [
+    FormRegisterComponent,
+    SidenavComponent,
+    MapComponent,
+    FormNoticeComponent
+  ],
     imports: [
       CommonModule,
       MaterialModule,

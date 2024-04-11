@@ -7,12 +7,14 @@ import {ListNoticesComponent} from "./list-notices/list-notices.component";
 import {HomeComponent} from "./home.component";
 import {MaterialModule} from "../../material/material.module";
 import {ComponentsModule} from "../components/components.module";
+import { EditNoticesComponent } from './edit-notices/edit-notices.component';
 
 @NgModule({
   declarations: [
     CreateNoticeComponent,
     ListNoticesComponent,
-    HomeComponent
+    HomeComponent,
+    EditNoticesComponent
   ],
   imports: [
     CommonModule,
