@@ -33,8 +33,8 @@ export class FormRegisterComponent implements OnInit {
 
   onSubmit(){
     this.route.url.subscribe(urlSegments => {
-      const roles:string = urlSegments[urlSegments.length - 1].path;
-      this.form.addControl('roles', this.formBuilder.control(roles))
+      const rol:string = urlSegments[urlSegments.length - 1].path;
+      this.form.addControl('rol', this.formBuilder.control(rol))
     });
     this.formDatos.emit(this.form.value);
   }

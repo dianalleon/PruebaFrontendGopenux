@@ -1,1 +1,9 @@
-<p>sidenav works!</p>
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="side">
+    <button>Avisos</button>
+  </mat-drawer>
+  <div>
+    <button type="button" mat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+    <ng-content></ng-content>
+  </div>
+</mat-drawer-container>

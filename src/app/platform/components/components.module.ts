@@ -13,14 +13,16 @@ import {RouterModule} from "@angular/router";
     SidenavComponent,
     FormRegisterComponent
   ],
-  exports: [
-    FormRegisterComponent
-  ],
+    exports: [
+      FormRegisterComponent,
+      SidenavComponent,
+      MapComponent
+    ],
     imports: [
-        CommonModule,
-        MaterialModule,
-        ReactiveFormsModule,
-        RouterModule
+      CommonModule,
+      MaterialModule,
+      ReactiveFormsModule,
+      RouterModule,
     ]
 })
 export class ComponentsModule { }

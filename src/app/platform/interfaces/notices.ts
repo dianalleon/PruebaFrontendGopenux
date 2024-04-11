@@ -1,8 +1,9 @@
 export interface Notices {
   id?: string;
   description: string;
-  location: Location;
+  location?: Location;
   category: Category;
+  status: string;
 }
 
 export interface Location {

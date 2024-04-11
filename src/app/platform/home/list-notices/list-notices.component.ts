@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {MatTableDataSource} from "@angular/material/table";
+import {Notices} from "../../interfaces/notices";
+import {BackendService} from "../../services/backend.service";
 
 @Component({
   selector: 'app-list-notices',
@@ -7,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListNoticesComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns:string[] = ['description', 'category', 'status', 'options'];
+  dataSource!: MatTableDataSource<Notices>;
+
+  constructor(private backend: BackendService) { }
 
   ngOnInit(): void {
   }

@@ -6,6 +6,7 @@ import {CreateNoticeComponent} from "./create-notice/create-notice.component";
 import {ListNoticesComponent} from "./list-notices/list-notices.component";
 import {HomeComponent} from "./home.component";
 import {MaterialModule} from "../../material/material.module";
+import {ComponentsModule} from "../components/components.module";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {MaterialModule} from "../../material/material.module";
   imports: [
     CommonModule,
     HomeRoutingModule,
+    ComponentsModule,
     MaterialModule
   ]
 })
