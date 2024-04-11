@@ -1,19 +1,20 @@
 export interface Notices {
   id?: string;
+  locate: Locate;
   description: string;
-  location?: Location;
   category: Category;
   status: string;
 }
 
-export interface Location {
-  lat: string;
-  long: string;
+export interface Locate {
+  lat: number;
+  long: number;
 }
 
 export interface Category {
   id?: string;
   name: string;
+  type: string;
 }
 
 export interface Coordinate {
