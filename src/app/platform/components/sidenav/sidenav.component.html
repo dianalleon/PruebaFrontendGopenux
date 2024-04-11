@@ -2,10 +2,13 @@
   <mat-drawer #drawer mode="side">
     <button>Avisos</button>
   </mat-drawer>
-  <div class="cnt-section">
-    <button class="btn-menu" type="button" mat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
-    <div class="cnt-section-content">
+  <mat-drawer-content>
+    <div class="header">
+      <button type="button" mat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+      <button type="button" mat-button><mat-icon>exit_to_app</mat-icon></button>
+    </div>
+    <div class="content">
       <ng-content></ng-content>
     </div>
-  </div>
+  </mat-drawer-content>
 </mat-drawer-container>
