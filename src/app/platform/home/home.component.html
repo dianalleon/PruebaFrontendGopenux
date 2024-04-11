@@ -1,8 +1,8 @@
 <app-sidenav>
-  <section class="content">
-    <div class="cnt">
-      <button class="btn-add" routerLink="/home/create-notice"><mat-icon>add</mat-icon></button>
+  <section class="cnt">
+    <div class="content">
+      <router-outlet></router-outlet>
     </div>
-    <router-outlet></router-outlet>
+    <button class="btn-add" routerLink="/home/create-notice"><mat-icon>add</mat-icon></button>
   </section>
 </app-sidenav>

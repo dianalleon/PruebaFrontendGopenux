@@ -9,6 +9,7 @@ import {MaterialModule} from "../../material/material.module";
 import {ComponentsModule} from "../components/components.module";
 import { EditNoticesComponent } from './edit-notices/edit-notices.component';
 import { ViewNoticeComponent } from './view-notice/view-notice.component';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ViewNoticeComponent } from './view-notice/view-notice.component';
     CommonModule,
     HomeRoutingModule,
     ComponentsModule,
-    MaterialModule
+    MaterialModule,
+    MatTableModule
   ]
 })
 export class HomeModule { }

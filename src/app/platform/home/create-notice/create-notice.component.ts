@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Notices} from "../../interfaces/notices";
+import {BackendService} from "../../services/backend.service";
 
 @Component({
   selector: 'app-create-notice',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateNoticeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private backend: BackendService) { }
 
   ngOnInit(): void {
   }
 
+  createNotice(notice: Notices) {
+    this.backend.postCreateNotice(notice).subscribe(noticeCreate => {
+      console.log(noticeCreate)
+    })
+  }
 }

@@ -14,8 +14,9 @@ export class BackendService {
   private apiUrl: string = environment.apiUrl;
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  getListNotices(): void{
-
+  getListNotices(): Observable<Notices[]>{
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.auth.token }`);
+    return this.http.get<Notices[]>(this.apiUrl + `/api/getAll/notice`, {headers})
   }
 
   getLisCategory(): Observable<Category[]> {
@@ -23,4 +24,8 @@ export class BackendService {
     return this.http.get<Category[]>(this.apiUrl + `/api/getAll/category`, {headers})
   }
 
+  postCreateNotice(body:Notices): Observable<Notices>{
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.auth.token }`);
+    return this.http.post<Notices>(this.apiUrl + `/api/create/notice`, body, {headers})
+  }
 }

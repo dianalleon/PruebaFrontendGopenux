@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Feature, Map, View} from "ol";
 import * as olProj from 'ol/proj';
 import TileLayer from "ol/layer/Tile";
@@ -11,6 +11,7 @@ import {
 } from 'ol/interaction.js';
 import {Point} from "ol/geom";
 import {Icon, Style} from "ol/style";
+import {Coordinate} from "ol/coordinate";
 
 @Component({
   selector: 'app-map',
@@ -19,8 +20,9 @@ import {Icon, Style} from "ol/style";
 })
 export class MapComponent implements OnInit {
 
-  map!: Map;
-  vectorSource!: VectorSource<Feature<Point>>;
+  @Output() coordinatesMap: EventEmitter<Coordinate> = new EventEmitter<Coordinate>();
+  private map!: Map;
+  private vectorSource!: VectorSource<Feature<Point>>;
 
   constructor() { }
 
@@ -49,10 +51,9 @@ export class MapComponent implements OnInit {
 
   selectFeature(){
     this.map.on('click', event => {
-      const coordinate = olProj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326')
+      const coordinate: Coordinate = olProj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326')
       this.createFeature(coordinate[0], coordinate[1])
-
-      console.log(coordinate)
+      this.coordinatesMap.emit(coordinate);
     });
   }
 

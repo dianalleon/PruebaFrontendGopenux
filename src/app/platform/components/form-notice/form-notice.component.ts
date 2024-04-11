@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BackendService} from "../../services/backend.service";
-import {Category} from "../../interfaces/notices";
+import {Category, Notices} from "../../interfaces/notices";
+import {Coordinate} from "ol/coordinate";
 
 @Component({
   selector: 'app-form-notice',
@@ -10,6 +11,7 @@ import {Category} from "../../interfaces/notices";
 })
 export class FormNoticeComponent implements OnInit {
 
+  @Output() formNotice: EventEmitter<Notices> = new EventEmitter<Notices>();
   form!: FormGroup;
   categorys: Category[] = [];
   constructor(private formBuilder: FormBuilder, private backend: BackendService) { }
@@ -33,9 +35,11 @@ export class FormNoticeComponent implements OnInit {
     })
   }
 
+  coordinateMap(map: Coordinate){
+    this.form.addControl('locate', this.formBuilder.control(map))
+  }
+
   onSubmit(){
-    console.log(this.form.value)
-    //Capturar datos del formulario
-    //añadir los datos del mapa atravez de un output
+    this.formNotice.emit(this.form.value)
   }
 }

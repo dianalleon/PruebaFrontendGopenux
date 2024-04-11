@@ -10,12 +10,19 @@ import {BackendService} from "../../services/backend.service";
 })
 export class ListNoticesComponent implements OnInit {
 
-  displayedColumns:string[] = ['description', 'category', 'status', 'options'];
+  displayedColumns:string[] = ['description', 'category', 'status'];
   dataSource!: MatTableDataSource<Notices>;
 
   constructor(private backend: BackendService) { }
 
   ngOnInit(): void {
+    this.getListNotices();
+  }
+
+  getListNotices(){
+    this.backend.getListNotices().subscribe((notices: Notices[]) => {
+      this.dataSource = new  MatTableDataSource<Notices>(notices);
+    })
   }
 
 }
