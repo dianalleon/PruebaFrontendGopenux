@@ -10,7 +10,7 @@ import {BackendService} from "../../services/backend.service";
 })
 export class ListNoticesComponent implements OnInit {
 
-  displayedColumns:string[] = ['description', 'category', 'status'];
+  displayedColumns:string[] = ['description', 'category', 'status', 'options'];
   dataSource!: MatTableDataSource<Notices>;
 
   constructor(private backend: BackendService) { }
