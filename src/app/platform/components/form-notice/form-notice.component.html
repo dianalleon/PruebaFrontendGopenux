@@ -1,20 +1,30 @@
-<h2>Avisos</h2>
-<app-map></app-map>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill" class="col">
-    <mat-label>Nombre</mat-label>
-    <input matInput formControlName="description" placeholder="Ingrese la descripción">
-    <mat-error *ngIf="form.get('description')?.hasError('required')">Su nombre es requerido</mat-error>
-  </mat-form-field>
+<div class="cnt">
+  <div class="cnt-content-section">
+    <div class="cnt-map">
+      <ng-content></ng-content>
+    </div>
+    <form [formGroup]="form"  class="form" (ngSubmit)="onSubmit()">
+      <div class="cnt-section">
+        <mat-form-field appearance="fill">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput rows="5" formControlName="description" placeholder="Escribe aquí tu descripción"></textarea>
+          <mat-error *ngIf="form.get('description')?.hasError('required')">Su descripción es requerido</mat-error>
+        </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Categoria</mat-label>
-    <select matNativeControl>
-      <option value="" selected></option>
-      <option value="volvo">Volvo</option>
-      <option value="saab" disabled>Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
-    </select>
-  </mat-form-field>
-</form>
+        <mat-form-field appearance="fill">
+          <mat-label>Categoria</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let category of categorys" [value]="category.name">
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="buttons">
+        <button mat-raised-button class="btn" type="button" routerLink="/home/list-notice"><a>Regresar</a></button>
+        <button mat-raised-button class="btn-save" color="primary" type="submit">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+

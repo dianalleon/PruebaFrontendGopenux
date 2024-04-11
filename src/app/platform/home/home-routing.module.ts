@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {CreateNoticeComponent} from "./create-notice/create-notice.component";
 import {ListNoticesComponent} from "./list-notices/list-notices.component";
 import {HomeComponent} from "./home.component";
+import {EditNoticesComponent} from "./edit-notices/edit-notices.component";
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: 'create-notice', component: CreateNoticeComponent },
+      { path: 'edit/:id', component: EditNoticesComponent },
       { path: 'list-notice', component: ListNoticesComponent },
       { path: '**', redirectTo: 'list-notice' }
     ]

@@ -8,13 +8,15 @@ import {HomeComponent} from "./home.component";
 import {MaterialModule} from "../../material/material.module";
 import {ComponentsModule} from "../components/components.module";
 import { EditNoticesComponent } from './edit-notices/edit-notices.component';
+import { ViewNoticeComponent } from './view-notice/view-notice.component';
 
 @NgModule({
   declarations: [
     CreateNoticeComponent,
     ListNoticesComponent,
     HomeComponent,
-    EditNoticesComponent
+    EditNoticesComponent,
+    ViewNoticeComponent
   ],
   imports: [
     CommonModule,

@@ -51,6 +51,8 @@ export class MapComponent implements OnInit {
     this.map.on('click', event => {
       const coordinate = olProj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326')
       this.createFeature(coordinate[0], coordinate[1])
+
+      console.log(coordinate)
     });
   }
 

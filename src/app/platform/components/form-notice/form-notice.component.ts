@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {BackendService} from "../../services/backend.service";
+import {Category} from "../../interfaces/notices";
 
 @Component({
   selector: 'app-form-notice',
@@ -9,10 +11,19 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class FormNoticeComponent implements OnInit {
 
   form!: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  categorys: Category[] = [];
+  constructor(private formBuilder: FormBuilder, private backend: BackendService) { }
 
   ngOnInit(): void {
+    this.getLisCategory();
     this.initForm();
+  }
+
+  getLisCategory(){
+    this.backend.getLisCategory().subscribe( (categorys: Category[]) => {
+      this.categorys = categorys;
+      console.log(categorys)
+    })
   }
 
   initForm(){
@@ -23,6 +34,7 @@ export class FormNoticeComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log(this.form.value)
     //Capturar datos del formulario
     //añadir los datos del mapa atravez de un output
   }
