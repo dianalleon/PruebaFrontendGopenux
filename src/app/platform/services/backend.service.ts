@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Category, Notices} from "../interfaces/notices";
 import {AuthService} from "./auth.service";
 
@@ -12,7 +12,15 @@ import {AuthService} from "./auth.service";
 export class BackendService {
 
   private apiUrl: string = environment.apiUrl;
+  private notice: BehaviorSubject<Notices | null> = new BehaviorSubject<Notices | null>(null);
+
+  public notice$: Observable<Notices | null> = this.notice.asObservable();
+
   constructor(private http: HttpClient, private auth: AuthService) { }
+
+  setNotice(notice: Notices){
+    this.notice.next(notice);
+  }
 
   getListNotices(): Observable<Notices[]>{
     const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.auth.token }`);
@@ -27,5 +35,11 @@ export class BackendService {
   postCreateNotice(body:Notices): Observable<Notices>{
     const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.auth.token }`);
     return this.http.post<Notices>(this.apiUrl + `/api/create/notice`, body, {headers})
+  }
+
+  postEditNotice(id: string, body: Notices):Observable<Notices>{
+    console.log(body)
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.auth.token }`);
+    return this.http.patch<Notices>(this.apiUrl + `/api/edit/notice/${id}`, body, {headers})
   }
 }

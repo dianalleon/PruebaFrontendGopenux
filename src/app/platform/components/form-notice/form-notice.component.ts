@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BackendService} from "../../services/backend.service";
 import {Category, Notices} from "../../interfaces/notices";
@@ -11,12 +11,16 @@ import {Coordinate} from "ol/coordinate";
 })
 export class FormNoticeComponent implements OnInit {
 
+  @Input() editNotice!: Notices;
   @Output() formNotice: EventEmitter<Notices> = new EventEmitter<Notices>();
+
   form!: FormGroup;
   categorys: Category[] = [];
+
   constructor(private formBuilder: FormBuilder, private backend: BackendService) { }
 
   ngOnInit(): void {
+    console.log(this.editNotice)
     this.getLisCategory();
     this.initForm();
   }
@@ -24,7 +28,6 @@ export class FormNoticeComponent implements OnInit {
   getLisCategory(){
     this.backend.getLisCategory().subscribe( (categorys: Category[]) => {
       this.categorys = categorys;
-      console.log(categorys)
     })
   }
 
