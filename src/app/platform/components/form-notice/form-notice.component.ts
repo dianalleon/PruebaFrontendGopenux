@@ -11,7 +11,7 @@ import {Coordinate} from "ol/coordinate";
 })
 export class FormNoticeComponent implements OnInit {
 
-  @Input() editNotice!: Notices;
+  @Input() notice!: Notices;
   @Output() formNotice: EventEmitter<Notices> = new EventEmitter<Notices>();
 
   form!: FormGroup;
@@ -20,7 +20,6 @@ export class FormNoticeComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private backend: BackendService) { }
 
   ngOnInit(): void {
-    console.log(this.editNotice)
     this.getLisCategory();
     this.initForm();
   }
@@ -33,8 +32,8 @@ export class FormNoticeComponent implements OnInit {
 
   initForm(){
     this.form = this.formBuilder. group({
-      description: ['', Validators.required],
-      category: ['', Validators.required]
+      description: [this.notice.description, Validators.required],
+      category: [this.notice.category.id, Validators.required]
     })
   }
 
