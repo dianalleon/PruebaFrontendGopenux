@@ -28,6 +28,10 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator [length]="length"
+                   [pageSize]="pageSize"
+                   (page)="handlePageEvent($event)">
+    </mat-paginator>
   </div>
   <button class="btn-add" routerLink="/home/create"><mat-icon>add</mat-icon></button>
 </div>

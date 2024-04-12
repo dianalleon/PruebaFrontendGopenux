@@ -13,10 +13,10 @@ export class BackendService {
 
   private apiUrl: string = environment.apiUrl;
   private notice: BehaviorSubject<Notices | null> = new BehaviorSubject<Notices | null>(null);
-  private listNotices: BehaviorSubject<Notices[] | null> = new BehaviorSubject<Notices[] | null>(null);
+  private listNotices: BehaviorSubject<Paginator | null> = new BehaviorSubject<Paginator | null>(null);
 
   public notice$: Observable<Notices | null> = this.notice.asObservable();
-  public listNotices$: Observable<Notices[] | null> = this.listNotices.asObservable();
+  public listNotices$: Observable<Paginator | null> = this.listNotices.asObservable();
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
@@ -25,9 +25,13 @@ export class BackendService {
   }
 
   getListNotices():void{
+    this.setListNotices(1);
+  }
+
+  setListNotices(page: number){
     const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.auth.token }`);
-    this.http.get<Paginator>(this.apiUrl + `/api/getAll/notice`, {headers}).subscribe((response: Paginator) => {
-      this.listNotices.next(response.notices);
+    this.http.get<Paginator>(this.apiUrl + `/api/getAll/notice?page=${page}&limit=5`, {headers}).subscribe((response: Paginator) => {
+      this.listNotices.next(response);
     })
   }
 
