@@ -35,7 +35,6 @@ export class MapComponent implements OnInit {
     this.initMap();
     this.handleMap();
   }
-
   handleMap(){
     if(this.route.snapshot.paramMap.get('id')){
       const id: string | null = this.route.snapshot.paramMap.get('id');
@@ -52,7 +51,6 @@ export class MapComponent implements OnInit {
       })
     }
   }
-
   mapEdit(id: string){
     this.viewEdit = true;
     this.backend.getOneNotice(id).subscribe(notice => {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import {Notices} from "../../interfaces/notices";
 import {BackendService} from "../../services/backend.service";
 import {ToastrService} from "ngx-toastr";
@@ -9,12 +9,9 @@ import {Router} from "@angular/router";
   templateUrl: './create-notice.component.html',
   styleUrls: ['./create-notice.component.scss']
 })
-export class CreateNoticeComponent implements OnInit {
+export class CreateNoticeComponent{
 
   constructor(private backend: BackendService, private toastr: ToastrService, private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   createNotice(notice: Notices) {
     this.backend.postCreateNotice(notice).subscribe(noticeCreate => {

@@ -1,10 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BackendService} from "../../services/backend.service";
 import {Category, Notices} from "../../interfaces/notices";
-import {ActivatedRoute} from "@angular/router";
 import {Coordinate} from "ol/coordinate";
-
 @Component({
   selector: 'app-form-notice',
   templateUrl: './form-notice.component.html',
@@ -12,33 +10,24 @@ import {Coordinate} from "ol/coordinate";
 })
 export class FormNoticeComponent implements OnInit {
 
-
   @Output() formNotice: EventEmitter<Notices> = new EventEmitter<Notices>();
   @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
+  @Input() notice!: Notices;
 
   form!: FormGroup;
-  notice!: Notices;
   categorys: Category[] = [];
 
   constructor(private formBuilder: FormBuilder, private backend: BackendService) { }
 
   ngOnInit(): void {
     this.getLisCategory();
-    this.initNotice();
     this.initForm();
+    console.log(this.notice)
   }
 
   getLisCategory(){
     this.backend.getLisCategory().subscribe( (categorys: Category[]) => {
       this.categorys = categorys;
-    })
-  }
-
-  initNotice(){
-    this.backend.notice$.subscribe( (notice: Notices | null) => {
-      if(notice){
-        this.notice = notice;
-      }
     })
   }
 

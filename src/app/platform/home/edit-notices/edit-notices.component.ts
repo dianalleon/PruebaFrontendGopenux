@@ -3,6 +3,7 @@ import {BackendService} from "../../services/backend.service";
 import {Notices} from "../../interfaces/notices";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-edit-notices',
@@ -11,22 +12,23 @@ import {ToastrService} from "ngx-toastr";
 })
 export class EditNoticesComponent implements OnInit {
 
-  editNotice!: Notices;
+  edit!: Notices;
 
   constructor(private backend: BackendService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.backend.notice$.subscribe( (notice: Notices | null) => {
-      if(notice){
-        this.editNotice = notice;
+    this.route.paramMap.subscribe(result => {
+      const id = result.get('id') || undefined;
+      if(id){
+        this.backend.getOneNotice(id).subscribe((response: Notices) => this.edit = response)
       }
     })
   }
 
   postEditNotice(notice:Notices){
-    const id = this.route.snapshot.paramMap.get('id');
+    const id: string | null = this.route.snapshot.paramMap.get('id');
     if(id){
-      this.backend.patchEditNotice(id, notice).subscribe(notice => {
+      this.backend.patchEditNotice(id, notice).subscribe((notice: Notices) => {
         this.toastr.success('Se edito el aviso correctamente')
       })
     } else {

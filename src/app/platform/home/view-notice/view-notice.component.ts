@@ -14,6 +14,10 @@ export class ViewNoticeComponent implements OnInit {
   constructor(private backend: BackendService, public dialogRef: MatDialogRef<ViewNoticeComponent>) { }
 
   ngOnInit(): void {
+    this.ViewNotice();
+  }
+
+  ViewNotice(){
     this.backend.notice$.subscribe( (notice: Notices | null) => {
       if(notice){
         this.viewNotice = notice;
@@ -24,5 +28,4 @@ export class ViewNoticeComponent implements OnInit {
   onNoClick(){
     this.dialogRef.close();
   }
-
 }
