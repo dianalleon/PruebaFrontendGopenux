@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BackendService} from "../../services/backend.service";
 import {Category, Notices} from "../../interfaces/notices";
@@ -12,11 +12,14 @@ import {Coordinate} from "ol/coordinate";
 })
 export class FormNoticeComponent implements OnInit {
 
-  notice!: Notices;
+
   @Output() formNotice: EventEmitter<Notices> = new EventEmitter<Notices>();
+  @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
 
   form!: FormGroup;
+  notice!: Notices;
   categorys: Category[] = [];
+  view:boolean = true;
 
   constructor(private formBuilder: FormBuilder, private backend: BackendService, private route: ActivatedRoute) { }
 
@@ -63,5 +66,9 @@ export class FormNoticeComponent implements OnInit {
     if (this.form && this.form.valid) {
       this.formNotice.emit(this.form.value);
     }
+  }
+
+  onNoClick(){
+    this.closeModal.emit();
   }
 }

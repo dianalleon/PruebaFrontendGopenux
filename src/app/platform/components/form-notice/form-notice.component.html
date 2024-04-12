@@ -21,7 +21,7 @@
         </mat-form-field>
       </div>
       <div class="buttons">
-        <button mat-raised-button class="btn" type="button" routerLink="/home/list-notice"><a>Regresar</a></button>
+        <button mat-raised-button (click)="onNoClick()" class="btn" type="button" routerLink="/home/list-notice"><a>Regresar</a></button>
         <button mat-raised-button class="btn-save" color="primary" type="submit">Guardar</button>
       </div>
     </form>

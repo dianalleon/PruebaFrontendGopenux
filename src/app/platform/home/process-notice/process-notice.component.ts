@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {BackendService} from "../../services/backend.service";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-process-notice',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProcessNoticeComponent implements OnInit {
 
-  constructor() { }
+  statusNotice: string[] = ['Nuevo', 'En progreso', 'Validando', 'Solucionado'];
+
+  constructor(private backend:BackendService, public dialogRef: MatDialogRef<ProcessNoticeComponent>) { }
 
   ngOnInit(): void {
   }
 
+  onNoClick(){
+    this.dialogRef.close();
+  }
 }

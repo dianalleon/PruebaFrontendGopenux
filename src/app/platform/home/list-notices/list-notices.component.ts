@@ -40,25 +40,17 @@ export class ListNoticesComponent implements OnInit {
 
   openDialog(notice: Notices){
     this.backend.setNotice(notice);
-    const dialogRef = this.dialog.open(ViewNoticeComponent, {
+    this.dialog.open(ViewNoticeComponent, {
       width: '800px',
       height: '600px'
     })
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
   openDialogProcess(){
-    const dialogRef = this.dialog.open(ProcessNoticeComponent, {
+    this.dialog.open(ProcessNoticeComponent, {
       width: '400px',
       height: '400px'
     })
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
 }

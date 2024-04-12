@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Notices} from "../../interfaces/notices";
 import {BackendService} from "../../services/backend.service";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-view-notice',
@@ -10,7 +11,7 @@ import {BackendService} from "../../services/backend.service";
 export class ViewNoticeComponent implements OnInit {
 
   viewNotice!: Notices;
-  constructor(private backend: BackendService) { }
+  constructor(private backend: BackendService, public dialogRef: MatDialogRef<ViewNoticeComponent>) { }
 
   ngOnInit(): void {
     this.backend.notice$.subscribe( (notice: Notices | null) => {
@@ -18,6 +19,10 @@ export class ViewNoticeComponent implements OnInit {
         this.viewNotice = notice;
       }
     })
+  }
+
+  onNoClick(){
+    this.dialogRef.close();
   }
 
 }

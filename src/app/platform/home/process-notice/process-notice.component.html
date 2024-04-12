@@ -1,3 +1,12 @@
-<mat-dialog-content>
+<mat-dialog-content class="cnt">
   <h2>Desea tramitar este aviso?</h2>
+  <section class="cnt-section">
+    <div class="cnt-content" *ngFor="let status of statusNotice">
+      <h3>{{status}}</h3>
+    </div>
+  </section>
+  <mat-dialog-actions>
+    <button mat-raised-button class="btn" (click)="onNoClick()" type="button"><a>Close</a></button>
+    <button mat-raised-button class="btn-save" color="primary" type="submit">Guardar</button>
+  </mat-dialog-actions>
 </mat-dialog-content>
