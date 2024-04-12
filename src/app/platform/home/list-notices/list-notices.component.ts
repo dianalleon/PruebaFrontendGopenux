@@ -23,13 +23,16 @@ export class ListNoticesComponent implements OnInit {
 
   ngOnInit(): void {
     this.backend.setNotice(null);
-    this.getListNotices();
+    this.listNotices();
     this.admin = this.auth.rol === 'ROLE_ADMIN';
   }
 
-  getListNotices(){
-    this.backend.getListNotices().subscribe((notices: Notices[]) => {
-      this.dataSource = new  MatTableDataSource<Notices>(notices);
+  listNotices(){
+    this.backend.getListNotices();
+    this.backend.listNotices$.subscribe((responseNotices: Notices[] | null) => {
+      if(responseNotices){
+        this.dataSource = new  MatTableDataSource<Notices>(responseNotices);
+      }
     })
   }
 

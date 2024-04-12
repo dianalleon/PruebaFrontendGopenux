@@ -7,6 +7,6 @@
   </section>
   <mat-dialog-actions>
     <button mat-raised-button class="btn" (click)="onNoClick()" type="button"><a>Close</a></button>
-    <button mat-raised-button class="btn-save" color="primary" type="submit">Guardar</button>
+    <button mat-raised-button class="btn-save" [disabled]="statusSelect == 'Solucionado'" (click)="onSubmit()" color="primary" type="submit">Guardar</button>
   </mat-dialog-actions>
 </mat-dialog-content>

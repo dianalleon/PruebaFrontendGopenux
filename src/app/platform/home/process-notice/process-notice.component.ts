@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BackendService} from "../../services/backend.service";
 import {MatDialogRef} from "@angular/material/dialog";
+import {Notices} from "../../interfaces/notices";
 
 @Component({
   selector: 'app-process-notice',
@@ -9,15 +10,17 @@ import {MatDialogRef} from "@angular/material/dialog";
 })
 export class ProcessNoticeComponent implements OnInit {
 
-  statusNotice: string[] = ['Nuevo', 'En progreso', 'Validando', 'Solucionado'];
+  statusNotice: string[] = ['Nuevo', 'En ejecucion', 'Validado', 'Solucionado'];
   statusSelect: string = "";
+  id: string = "";
 
   constructor(private backend:BackendService, public dialogRef: MatDialogRef<ProcessNoticeComponent>) { }
 
   ngOnInit(): void {
-    this.backend.notice$.subscribe(notice =>{
-      if(notice){
+    this.backend.notice$.subscribe((notice: Notices | null) =>{
+      if(notice && notice.id){
         this.statusSelect= notice.status;
+        this.id = notice.id;
       }
     })
   }
@@ -26,5 +29,11 @@ export class ProcessNoticeComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  protected readonly self = self;
+  onSubmit(){
+    this.backend.patchStatusNotices(this.id).subscribe(response => {
+      this.backend.getListNotices();
+      this.onNoClick();
+    })
+  }
+
 }

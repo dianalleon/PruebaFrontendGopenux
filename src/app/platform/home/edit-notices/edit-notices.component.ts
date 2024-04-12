@@ -26,7 +26,7 @@ export class EditNoticesComponent implements OnInit {
   postEditNotice(notice:Notices){
     const id = this.route.snapshot.paramMap.get('id');
     if(id){
-      this.backend.postEditNotice(id, notice).subscribe(notice => {
+      this.backend.patchEditNotice(id, notice).subscribe(notice => {
         this.toastr.success('Se edito el aviso correctamente')
       })
     } else {
