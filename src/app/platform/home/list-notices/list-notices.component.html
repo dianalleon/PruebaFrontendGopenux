@@ -22,7 +22,7 @@
         <tr mat-cell *matCellDef="let element" class="buttons">
           <button [hidden]="!admin" (click)="editNotice(element)" class="icon"><mat-icon>edit</mat-icon></button>
           <button (click)="openDialog(element)" class="icon"><mat-icon>visibility</mat-icon></button>
-          <button (click)="openDialogProcess()" [hidden]="!admin" class="icon"><mat-icon>assignment</mat-icon></button>
+          <button (click)="openDialogProcess(element)" [hidden]="!admin" class="icon"><mat-icon>assignment</mat-icon></button>
         </tr>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

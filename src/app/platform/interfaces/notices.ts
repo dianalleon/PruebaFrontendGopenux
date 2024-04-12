@@ -3,7 +3,7 @@ export interface Notices {
   locate: Locate;
   description: string;
   category: Category;
-  status?: string;
+  status: string;
 }
 
 export interface Locate {

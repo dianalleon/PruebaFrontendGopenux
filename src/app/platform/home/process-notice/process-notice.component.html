@@ -1,7 +1,7 @@
 <mat-dialog-content class="cnt">
   <h2>Desea tramitar este aviso?</h2>
-  <section class="cnt-section">
-    <div class="cnt-content" *ngFor="let status of statusNotice">
+  <section class="cnt-content-section">
+    <div class="cnt-content" *ngFor="let status of statusNotice" [ngClass]="{ 'cnt-status': status == statusSelect}">
       <h3>{{status}}</h3>
     </div>
   </section>

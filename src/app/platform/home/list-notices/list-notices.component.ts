@@ -46,11 +46,11 @@ export class ListNoticesComponent implements OnInit {
     })
   }
 
-  openDialogProcess(){
+  openDialogProcess(notice: Notices){
+    this.backend.setNotice(notice)
     this.dialog.open(ProcessNoticeComponent, {
-      width: '400px',
-      height: '400px'
+      width: '500px',
+      height: '200px'
     })
   }
-
 }
