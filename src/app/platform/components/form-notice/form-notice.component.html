@@ -7,14 +7,14 @@
       <div class="cnt-section">
         <mat-form-field appearance="fill">
           <mat-label>Descripción</mat-label>
-          <textarea matInput rows="5" formControlName="description" placeholder="Escribe aquí tu descripción"></textarea>
+          <textarea matInput rows="5" formControlName="description" placeholder="Escribe aquí tu descripción" [readonly]="view"></textarea>
           <mat-error *ngIf="form.get('description')?.hasError('required')">Su descripción es requerido</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Categoria</mat-label>
           <mat-select formControlName="category">
-            <mat-option *ngFor="let category of categorys" [value]="category.id">
+            <mat-option *ngFor="let category of categorys" [value]="category.id" [disabled]="view">
               {{category.name}}
             </mat-option>
           </mat-select>
@@ -22,7 +22,7 @@
       </div>
       <div class="buttons">
         <button mat-raised-button (click)="onNoClick()" class="btn" type="button" routerLink="/home/list-notice"><a>Regresar</a></button>
-        <button mat-raised-button class="btn-save" color="primary" type="submit">Guardar</button>
+        <button mat-raised-button class="btn-save" color="primary" type="submit" *ngIf="!view">Guardar</button>
       </div>
     </form>
   </div>

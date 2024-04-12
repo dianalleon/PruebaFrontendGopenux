@@ -13,16 +13,17 @@ export class FormNoticeComponent implements OnInit {
   @Output() formNotice: EventEmitter<Notices> = new EventEmitter<Notices>();
   @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
   @Input() notice!: Notices;
+  @Input() view!: boolean;
 
   form!: FormGroup;
   categorys: Category[] = [];
+
 
   constructor(private formBuilder: FormBuilder, private backend: BackendService) { }
 
   ngOnInit(): void {
     this.getLisCategory();
     this.initForm();
-    console.log(this.notice)
   }
 
   getLisCategory(){

@@ -11,6 +11,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 export class ViewNoticeComponent implements OnInit {
 
   viewNotice!: Notices;
+  view: boolean = false;
   constructor(private backend: BackendService, public dialogRef: MatDialogRef<ViewNoticeComponent>) { }
 
   ngOnInit(): void {
@@ -21,6 +22,7 @@ export class ViewNoticeComponent implements OnInit {
     this.backend.notice$.subscribe( (notice: Notices | null) => {
       if(notice){
         this.viewNotice = notice;
+        this.view = true;
       }
     })
   }

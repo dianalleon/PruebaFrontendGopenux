@@ -14,7 +14,7 @@ import {Icon, Style} from "ol/style";
 import {Coordinate} from "ol/coordinate";
 import {BackendService} from "../../services/backend.service";
 import {Notices} from "../../interfaces/notices";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-map',
@@ -26,6 +26,7 @@ export class MapComponent implements OnInit {
   @Output() coordinatesMap: EventEmitter<Coordinate> = new EventEmitter<Coordinate>();
   @Input() coordinate!: Coordinate;
   @Input() viewEdit!: boolean;
+
   private map!: Map;
   private vectorSource!: VectorSource<Feature<Point>>;
 
@@ -51,15 +52,14 @@ export class MapComponent implements OnInit {
       })
     }
   }
-  mapEdit(id: string){
+  private mapEdit(id: string){
     this.viewEdit = true;
     this.backend.getOneNotice(id).subscribe(notice => {
       this.createFeature(notice.locate.long, notice.locate.lat);
     });
     this.selectFeature();
   }
-
-  initMap(){
+  private initMap(){
     this.map = new Map ({
       interactions: defaultInteractions().extend([new DblClickDragZoom()]),
       target: 'ol-map',
@@ -76,7 +76,7 @@ export class MapComponent implements OnInit {
     this.createLayer();
   }
 
-  selectFeature(){
+  private selectFeature(){
     this.map.on('click', event => {
       const coordinate: Coordinate = olProj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326')
       this.createFeature(coordinate[0], coordinate[1])
@@ -84,7 +84,7 @@ export class MapComponent implements OnInit {
     });
   }
 
-  createFeature(long:number, lat:number){
+  private createFeature(long:number, lat:number){
     this.vectorSource.clear();
     const feature: Feature<Point> = new Feature({
       geometry: new Point(
@@ -107,7 +107,7 @@ export class MapComponent implements OnInit {
     this.vectorSource.addFeature(feature);
   }
 
-  createLayer(){
+  private createLayer(){
     this.vectorSource = new VectorSource();
     const layer = new VectorLayer({
       source: this.vectorSource
