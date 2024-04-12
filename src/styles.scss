@@ -6,9 +6,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; padding: 0 
 h2{
   align-items: center;
   font-family: 'Nunito', sans-serif;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 32px !important;
   color:#43598a;
+  font-weight: 900 !important;
 }
 
 .cnt-section{
@@ -28,7 +28,7 @@ h2{
 
 .btn-save {
   border-radius: 4px;
-  background-color: #43598a;
+  background-color: #012E4A;
   cursor: pointer;
   border: none;
   outline: none;
@@ -40,7 +40,7 @@ h2{
 }
 
 .btn{
-  background-color: #c0c7c2;
+  background-color: #81BECE;
   border-radius: 4px;
   cursor: pointer;
   border: none;
@@ -59,4 +59,8 @@ h2{
 
 .mat-dialog-content{
   max-height: 100% !important;
+}
+
+.mat-raised-button{
+  color: white !important;
 }
