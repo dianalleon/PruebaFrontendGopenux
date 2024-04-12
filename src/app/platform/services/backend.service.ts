@@ -38,7 +38,6 @@ export class BackendService {
   }
 
   postEditNotice(id: string, body: Notices):Observable<Notices>{
-    console.log(body)
     const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.auth.token }`);
     return this.http.patch<Notices>(this.apiUrl + `/api/edit/notice/${id}`, body, {headers})
   }

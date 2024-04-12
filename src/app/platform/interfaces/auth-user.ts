@@ -5,5 +5,5 @@ export interface AuthUser {
 
 export interface ResponseAuth {
   token: string;
-  roles?: string[];
+  rol: string;
 }

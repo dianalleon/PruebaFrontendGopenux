@@ -20,9 +20,9 @@
       <ng-container matColumnDef="options">
         <th mat-header-cell *matHeaderCellDef>Opciones</th>
         <tr mat-cell *matCellDef="let element" class="buttons">
-          <button (click)="editNotice(element)" class="icon"><mat-icon>edit</mat-icon></button>
+          <button [hidden]="!admin" (click)="editNotice(element)" class="icon"><mat-icon>edit</mat-icon></button>
           <button (click)="openDialog(element)" class="icon"><mat-icon>visibility</mat-icon></button>
-          <button class="icon"><mat-icon>assignment</mat-icon></button>
+          <button (click)="openDialogProcess()" [hidden]="!admin" class="icon"><mat-icon>assignment</mat-icon></button>
         </tr>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,9 +1,9 @@
 export interface Notices {
   id?: string;
-  locate: Locate;
+  locate?: Locate;
   description: string;
   category: Category;
-  status: string;
+  status?: string;
 }
 
 export interface Locate {
@@ -14,10 +14,5 @@ export interface Locate {
 export interface Category {
   id?: string;
   name: string;
-  type: string;
-}
-
-export interface Coordinate {
-  lat: number,
-  long:number
+  type?: string;
 }

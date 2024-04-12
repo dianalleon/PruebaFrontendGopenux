@@ -5,6 +5,8 @@ import {BackendService} from "../../services/backend.service";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {ViewNoticeComponent} from "../view-notice/view-notice.component";
+import {AuthService} from "../../services/auth.service";
+import {ProcessNoticeComponent} from "../process-notice/process-notice.component";
 
 @Component({
   selector: 'app-list-notices',
@@ -15,16 +17,17 @@ export class ListNoticesComponent implements OnInit {
 
   displayedColumns:string[] = ['description', 'category', 'status', 'options'];
   dataSource!: MatTableDataSource<Notices>;
+  admin: boolean = false;
 
-  constructor(private backend: BackendService, private router: Router, public dialog: MatDialog) { }
+  constructor(private backend: BackendService, private router: Router, public dialog: MatDialog, private auth:AuthService) { }
 
   ngOnInit(): void {
     this.getListNotices();
+    this.admin = this.auth.rol === 'ROLE_ADMIN';
   }
 
   getListNotices(){
     this.backend.getListNotices().subscribe((notices: Notices[]) => {
-      console.log(notices)
       this.dataSource = new  MatTableDataSource<Notices>(notices);
     })
   }
@@ -39,6 +42,17 @@ export class ListNoticesComponent implements OnInit {
     const dialogRef = this.dialog.open(ViewNoticeComponent, {
       width: '800px',
       height: '600px'
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openDialogProcess(){
+    const dialogRef = this.dialog.open(ProcessNoticeComponent, {
+      width: '400px',
+      height: '400px'
     })
 
     dialogRef.afterClosed().subscribe(result => {

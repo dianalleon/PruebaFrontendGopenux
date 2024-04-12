@@ -31,10 +31,17 @@ export class FormNoticeComponent implements OnInit {
   }
 
   initForm(){
-    this.form = this.formBuilder. group({
-      description: [this.notice.description, Validators.required],
-      category: [this.notice.category.id, Validators.required]
-    })
+    if (this.notice) {
+      this.form = this.formBuilder.group({
+        description: [this.notice.description, Validators.required],
+        category: [this.notice.category.id, Validators.required]
+      });
+    } else {
+      this.form = this.formBuilder.group({
+        description: ['', Validators.required],
+        category: ['', Validators.required]
+      });
+    }
   }
 
   coordinateMap(map: Coordinate){
@@ -42,6 +49,8 @@ export class FormNoticeComponent implements OnInit {
   }
 
   onSubmit(){
-    this.formNotice.emit(this.form.value)
+    if (this.form && this.form.valid) {
+      this.formNotice.emit(this.form.value);
+    }
   }
 }
