@@ -31,10 +31,10 @@ export class BackendService {
     })
   }
 
-  // getListNotices(): Observable<Paginator>{
-  //   const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.auth.token }`);
-  //   return this.http.get<Paginator>(this.apiUrl + `/api/getAll/notice`, {headers})
-  // }
+  getOneNotice(id: string): Observable<Notices>{
+    const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.auth.token }`);
+    return this.http.get<Notices>(this.apiUrl + `/api/getOne/notice/${id}`, {headers})
+  }
 
   getLisCategory(): Observable<Category[]> {
     const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.auth.token }`);

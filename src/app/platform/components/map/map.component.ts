@@ -14,6 +14,7 @@ import {Icon, Style} from "ol/style";
 import {Coordinate} from "ol/coordinate";
 import {BackendService} from "../../services/backend.service";
 import {Notices} from "../../interfaces/notices";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-map',
@@ -24,33 +25,41 @@ export class MapComponent implements OnInit {
 
   @Output() coordinatesMap: EventEmitter<Coordinate> = new EventEmitter<Coordinate>();
   @Input() coordinate!: Coordinate;
-  @Input() view!: string;
+  @Input() viewEdit!: boolean;
   private map!: Map;
   private vectorSource!: VectorSource<Feature<Point>>;
 
-  constructor(private backend: BackendService) { }
+  constructor(private backend: BackendService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initMap();
-    this.backend.notice$.subscribe((map: Notices | null) => {
-      if(map==null){
-        this.selectFeature();
-      } else {
-        this.createFeature(map.locate.long, map.locate.lat)
-      }
-    })
+    this.handleMap();
   }
 
-  // processMap(){
-  //   if(this.view == 'view'){
-  //     this.createFeature(this.coordinate[0], this.coordinate[1])
-  //   } else if(this.view == 'edit'){
-  //     this.createFeature(this.coordinate[0], this.coordinate[1])
-  //     this.selectFeature();
-  //   } else {
-  //     this.selectFeature();
-  //   }
-  // }
+  handleMap(){
+    if(this.route.snapshot.paramMap.get('id')){
+      const id: string | null = this.route.snapshot.paramMap.get('id');
+      if(id){
+        this.mapEdit(id)
+      }
+    }else {
+      this.backend.notice$.subscribe((map: Notices | null) => {
+        if(map==null){
+          this.selectFeature();
+        } else {
+          this.createFeature(map.locate.long, map.locate.lat);
+        }
+      })
+    }
+  }
+
+  mapEdit(id: string){
+    this.viewEdit = true;
+    this.backend.getOneNotice(id).subscribe(notice => {
+      this.createFeature(notice.locate.long, notice.locate.lat);
+    });
+    this.selectFeature();
+  }
 
   initMap(){
     this.map = new Map ({

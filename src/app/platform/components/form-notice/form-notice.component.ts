@@ -19,9 +19,8 @@ export class FormNoticeComponent implements OnInit {
   form!: FormGroup;
   notice!: Notices;
   categorys: Category[] = [];
-  view:boolean = true;
 
-  constructor(private formBuilder: FormBuilder, private backend: BackendService, private route: ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder, private backend: BackendService) { }
 
   ngOnInit(): void {
     this.getLisCategory();
