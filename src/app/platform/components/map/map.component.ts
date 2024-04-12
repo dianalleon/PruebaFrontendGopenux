@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Feature, Map, View} from "ol";
 import * as olProj from 'ol/proj';
 import TileLayer from "ol/layer/Tile";
@@ -12,6 +12,8 @@ import {
 import {Point} from "ol/geom";
 import {Icon, Style} from "ol/style";
 import {Coordinate} from "ol/coordinate";
+import {BackendService} from "../../services/backend.service";
+import {Notices} from "../../interfaces/notices";
 
 @Component({
   selector: 'app-map',
@@ -21,15 +23,34 @@ import {Coordinate} from "ol/coordinate";
 export class MapComponent implements OnInit {
 
   @Output() coordinatesMap: EventEmitter<Coordinate> = new EventEmitter<Coordinate>();
+  @Input() coordinate!: Coordinate;
+  @Input() view!: string;
   private map!: Map;
   private vectorSource!: VectorSource<Feature<Point>>;
 
-  constructor() { }
+  constructor(private backend: BackendService) { }
 
   ngOnInit(): void {
     this.initMap();
-    this.selectFeature();
+    this.backend.notice$.subscribe((map: Notices | null) => {
+      if(map==null){
+        this.selectFeature();
+      } else {
+        this.createFeature(map.locate.long, map.locate.lat)
+      }
+    })
   }
+
+  // processMap(){
+  //   if(this.view == 'view'){
+  //     this.createFeature(this.coordinate[0], this.coordinate[1])
+  //   } else if(this.view == 'edit'){
+  //     this.createFeature(this.coordinate[0], this.coordinate[1])
+  //     this.selectFeature();
+  //   } else {
+  //     this.selectFeature();
+  //   }
+  // }
 
   initMap(){
     this.map = new Map ({
@@ -45,7 +66,6 @@ export class MapComponent implements OnInit {
         zoom:5
       }),
     })
-
     this.createLayer();
   }
 
@@ -71,6 +91,12 @@ export class MapComponent implements OnInit {
       })
     }));
 
+    this.map.setView(
+      new View({
+        center: olProj.transform([long, lat], 'EPSG:4326', 'EPSG:3857'),
+        zoom: 8
+      })
+    );
     this.vectorSource.addFeature(feature);
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 
 @Component({
@@ -6,12 +6,9 @@ import {AuthService} from "../../services/auth.service";
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.scss']
 })
-export class RegisterUserComponent implements OnInit {
+export class RegisterUserComponent {
 
   constructor(private auth: AuthService) { }
-
-  ngOnInit(): void {
-  }
 
   registerUser(user: any){
     this.auth.registerCitizen(user);

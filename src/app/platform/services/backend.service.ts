@@ -18,7 +18,7 @@ export class BackendService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  setNotice(notice: Notices){
+  setNotice(notice: Notices | null){
     this.notice.next(notice);
   }
 
@@ -33,6 +33,7 @@ export class BackendService {
   }
 
   postCreateNotice(body:Notices): Observable<Notices>{
+    console.log(body)
     const headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${ this.auth.token }`);
     return this.http.post<Notices>(this.apiUrl + `/api/create/notice`, body, {headers})
   }

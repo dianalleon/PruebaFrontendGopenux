@@ -22,6 +22,7 @@ export class ListNoticesComponent implements OnInit {
   constructor(private backend: BackendService, private router: Router, public dialog: MatDialog, private auth:AuthService) { }
 
   ngOnInit(): void {
+    this.backend.setNotice(null);
     this.getListNotices();
     this.admin = this.auth.rol === 'ROLE_ADMIN';
   }
@@ -33,8 +34,8 @@ export class ListNoticesComponent implements OnInit {
   }
 
   editNotice(notice:Notices){
-    this.backend.setNotice(notice);
     this.router.navigateByUrl(`/home/edit/${notice.id}`);
+    this.backend.setNotice(notice);
   }
 
   openDialog(notice: Notices){

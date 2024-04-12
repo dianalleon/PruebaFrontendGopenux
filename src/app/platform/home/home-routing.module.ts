@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     children: [
-      { path: 'create-notice', component: CreateNoticeComponent },
+      { path: 'create', component: CreateNoticeComponent },
       { path: 'edit/:id', component: EditNoticesComponent },
       { path: 'list-notice', component: ListNoticesComponent },
       { path: '**', redirectTo: 'list-notice' }
