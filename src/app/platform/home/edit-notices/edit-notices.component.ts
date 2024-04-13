@@ -3,7 +3,6 @@ import {BackendService} from "../../services/backend.service";
 import {Notices} from "../../interfaces/notices";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {filter} from "rxjs";
 
 @Component({
   selector: 'app-edit-notices',

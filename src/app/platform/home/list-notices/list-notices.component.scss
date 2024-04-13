@@ -7,8 +7,17 @@
   }
 }
 
-.table-cnt{
-  width: 1000px;
+.cnt-section{
+  width: 600px;
+}
+
+.mat-table{
+  width: 100%;
+}
+
+.table-container{
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 .btn-add {
