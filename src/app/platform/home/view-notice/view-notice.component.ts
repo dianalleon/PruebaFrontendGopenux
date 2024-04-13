@@ -12,20 +12,24 @@ export class ViewNoticeComponent implements OnInit {
 
   notice!: Notices;
   view: boolean = false;
-  constructor(private backend: BackendService, public dialogRef: MatDialogRef<ViewNoticeComponent>) { }
+
+  constructor(private backend: BackendService, public dialogRef: MatDialogRef<ViewNoticeComponent>) {
+  }
 
   ngOnInit(): void {
     this.viewNotice();
   }
-  viewNotice(){
-    this.backend.notice$.subscribe( (notice: Notices | null) => {
-      if(notice){
+
+  viewNotice() {
+    this.backend.notice$.subscribe((notice: Notices | null) => {
+      if (notice) {
         this.notice = notice;
         this.view = true;
       }
     })
   }
-  onNoClick(){
+
+  onNoClick() {
     this.dialogRef.close();
   }
 }

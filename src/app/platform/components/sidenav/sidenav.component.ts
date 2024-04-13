@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -6,12 +6,9 @@ import {Router} from "@angular/router";
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent{
 
   constructor(private route:Router) { }
-
-  ngOnInit(): void {
-  }
 
   closeSession(){
     localStorage.removeItem('token');

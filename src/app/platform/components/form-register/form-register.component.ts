@@ -17,11 +17,9 @@ export class FormRegisterComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
   }
-
   toggleVisibility(): void {
     this.hide = !this.hide;
   }
-
   initForm(): void {
     this.form = this.formBuilder. group({
       name: ['', Validators.required],
@@ -30,7 +28,6 @@ export class FormRegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/)]],
     })
   }
-
   onSubmit(){
     this.route.url.subscribe(urlSegments => {
       const rol:string = urlSegments[urlSegments.length - 1].path;

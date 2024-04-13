@@ -35,5 +35,4 @@ export class ProcessNoticeComponent implements OnInit {
       this.onNoClick();
     })
   }
-
 }

@@ -18,20 +18,17 @@ export class FormNoticeComponent implements OnInit {
   form!: FormGroup;
   categorys: Category[] = [];
 
-
   constructor(private formBuilder: FormBuilder, private backend: BackendService) { }
 
   ngOnInit(): void {
     this.getLisCategory();
     this.initForm();
   }
-
   getLisCategory(){
     this.backend.getLisCategory().subscribe( (categorys: Category[]) => {
       this.categorys = categorys;
     })
   }
-
   initForm() {
     if (this.notice) {
       this.form = this.formBuilder.group({
@@ -45,18 +42,15 @@ export class FormNoticeComponent implements OnInit {
       });
     }
   }
-
   coordinateMap(map: Coordinate){
     const locate = { long: map[0], lat: map[1] }
     this.form.addControl('locate', this.formBuilder.control(locate))
   }
-
   onSubmit(){
     if (this.form && this.form.valid) {
       this.formNotice.emit(this.form.value);
     }
   }
-
   onNoClick(){
     this.closeModal.emit();
   }
