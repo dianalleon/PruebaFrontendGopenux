@@ -11,6 +11,6 @@ export class RegisterAdminComponent {
   constructor(private auth: AuthService) { }
 
   registerAdmin(user: any){
-    this.auth.registerTechnical(user);
+    this.auth.registerTechnical(user)
   }
 }

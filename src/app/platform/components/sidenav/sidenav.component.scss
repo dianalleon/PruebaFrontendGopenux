@@ -14,10 +14,11 @@
 
 .content{
   width: auto;
-  height: 90vh;
   background-color: #E8EDE7;
   display: flex;
   justify-content: center;
+  height: 600px;
+  overflow: hidden;
 }
 
 .mat-drawer{

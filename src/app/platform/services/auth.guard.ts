@@ -7,8 +7,7 @@ import {AuthService} from "./auth.service";
 })
 export class AuthGuard implements CanLoad {
 
-  constructor(private auth: AuthService, private router: Router) {
-  }
+  constructor(private auth: AuthService, private router: Router) {}
   canLoad(): boolean {
     if (this.auth.isAuthenticated()) {
       return true;
@@ -17,5 +16,4 @@ export class AuthGuard implements CanLoad {
       return false;
     }
   }
-
 }

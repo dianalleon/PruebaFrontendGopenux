@@ -29,6 +29,7 @@ export class EditNoticesComponent implements OnInit {
     if(id){
       this.backend.patchEditNotice(id, notice).subscribe((notice: Notices) => {
         this.toastr.success('Se edito el aviso correctamente')
+        this.backend.getListNotices();
       })
     } else {
       this.toastr.error('No se pudo editar el aviso')

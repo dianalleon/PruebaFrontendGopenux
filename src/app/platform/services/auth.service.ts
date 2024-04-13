@@ -16,11 +16,9 @@ export class AuthService {
   get token(){
     return localStorage.getItem('token')
   }
-
   get rol(){
     return localStorage.getItem('rol')
   }
-
   login(body: AuthUser){
     this.http.post<ResponseAuth>(this.apiUrl + `/api/login`, body).subscribe((userLogin: ResponseAuth) => {
       localStorage.setItem('token', userLogin.token)
@@ -30,17 +28,15 @@ export class AuthService {
   }
 
   registerCitizen(body: User){
-    this.http.post<User>(this.apiUrl + `/api/register-user/citizen`, body).subscribe((userRegister: User) => {
+    return this.http.post<User>(this.apiUrl + `/api/register-user/citizen`, body).subscribe((userRegister: User) => {
       this.router.navigateByUrl('/auth/login')
     })
   }
-
   registerTechnical(body: User): void {
     this.http.post<User>(this.apiUrl + `/api/register-user/technical`, body).subscribe((userRegister: User): void => {
       this.router.navigateByUrl('/auth/login')
     })
   }
-
   isAuthenticated(): boolean {
     return !!localStorage.getItem('token');
   }

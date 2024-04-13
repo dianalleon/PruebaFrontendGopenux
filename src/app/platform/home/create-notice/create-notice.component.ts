@@ -16,6 +16,7 @@ export class CreateNoticeComponent{
   createNotice(notice: Notices) {
     this.backend.postCreateNotice(notice).subscribe(noticeCreate => {
       this.toastr.success('El aviso fue creado correctamente')
+      this.backend.getListNotices();
       this.router.navigateByUrl(`/home/list-notice`)
     })
   }
